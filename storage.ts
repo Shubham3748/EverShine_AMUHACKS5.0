@@ -1,6 +1,8 @@
 
 import { UserProfile, ChapterResult, ContactMessage } from '../types';
 
+export type { UserProfile };
+
 const USER_KEY = 'driveaware_premium_user';
 const MESSAGES_KEY = 'driveaware_messages';
 
