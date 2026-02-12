@@ -2,14 +2,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, User, LogOut } from 'lucide-react';
-import { getStoredUser, logoutUser } from '../utils/storage';
+import { getStoredUser, logoutUser, UserProfile } from '../utils/storage';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<UserProfile | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
-  const user = getStoredUser();
+
+  // Initial load and sync on location change
+  useEffect(() => {
+    setUser(getStoredUser());
+  }, [location]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,8 +26,9 @@ const Navbar: React.FC = () => {
 
   const handleLogout = () => {
     logoutUser();
+    setUser(getStoredUser()); // Update local state immediately to reflect changes
     navigate('/');
-    window.location.reload();
+    setIsMobileMenuOpen(false);
   };
 
   const navLinks = [
@@ -85,7 +91,7 @@ const Navbar: React.FC = () => {
           ))}
           {user?.isLoggedIn ? (
             <button 
-              onClick={() => { handleLogout(); setIsMobileMenuOpen(false); }}
+              onClick={handleLogout}
               className="text-2xl font-semibold text-red-500 flex items-center gap-2"
             >
               <LogOut size={24} /> Logout
