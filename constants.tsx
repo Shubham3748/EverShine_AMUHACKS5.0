@@ -1,8 +1,31 @@
 
-import { Chapter, Scenario } from './types';
+import { Chapter, Scenario, Badge } from './types';
+
+// --- DATA: BADGES ---
+export const BADGES: Badge[] = [
+  { id: 'initiate', title: 'Initiate', description: 'Complete your first chapter.', icon: 'Flag' },
+  { id: 'bronze_driver', title: 'Bronze Driver', description: 'Complete 5 chapters.', icon: 'Award' },
+  { id: 'silver_driver', title: 'Silver Driver', description: 'Complete 25 chapters.', icon: 'Star' },
+  { id: 'gold_driver', title: 'Gold Driver', description: 'Complete all 50 chapters.', icon: 'Trophy' },
+  { id: 'perfectionist', title: 'Perfectionist', description: 'Achieve a perfect 100 score in any chapter.', icon: 'CheckCircle' },
+  { id: 'hat_trick', title: 'Hat Trick', description: 'Achieve 3 perfect scores.', icon: 'Zap' },
+  { id: 'ace', title: 'Ace', description: 'Achieve 10 perfect scores.', icon: 'Target' },
+  { id: 'legend', title: 'Legend', description: 'Achieve 20 perfect scores.', icon: 'Crown' },
+  { id: 'point_collector', title: 'Point Collector', description: 'Reach a total score of 500.', icon: 'Plus' },
+  { id: 'high_scorer', title: 'High Scorer', description: 'Reach a total score of 2000.', icon: 'TrendingUp' },
+  { id: 'elite_scorer', title: 'Elite Scorer', description: 'Reach a total score of 4000.', icon: 'Activity' },
+  { id: 'guardian', title: 'Guardian', description: 'Score 100 in Chapter 2: Pedestrian Priority.', icon: 'Shield' },
+  { id: 'storm_master', title: 'Storm Master', description: 'Score 100 in Chapter 5: Weather Adaptation.', icon: 'CloudRain' },
+  { id: 'night_owl', title: 'Night Owl', description: 'Score 100 in Chapter 6: Night Operations.', icon: 'Moon' },
+  { id: 'highway_star', title: 'Highway Star', description: 'Score 100 in Chapter 7: Highway Discipline.', icon: 'Truck' },
+  { id: 'city_slicker', title: 'City Slicker', description: 'Score 100 in Chapter 8: Urban Congestion.', icon: 'Building' },
+  { id: 'zen_master', title: 'Zen Master', description: 'Score 100 in Chapter 18: Emotional Control.', icon: 'Smile' },
+  { id: 'mechanic', title: 'Mechanic', description: 'Score 100 in Chapter 20: Vehicle Maintenance.', icon: 'Wrench' },
+  { id: 'consistent', title: 'Consistent', description: 'Maintain an average score of 90+ after 5 chapters.', icon: 'BarChart' },
+  { id: 'driveaware_champion', title: 'DriveAware Champion', description: 'Complete the entire course with >4800 points.', icon: 'Medal' }
+];
 
 // --- DATA: CHAPTER TOPICS ---
-// 10 unique situations for each chapter to ensure no repetition.
 
 const CHAPTER_TOPICS: Record<number, string[]> = {
   1: [ // Foundations
@@ -125,11 +148,8 @@ const CHAPTER_TOPICS: Record<number, string[]> = {
     "e-bikes moving faster than expected",
     "cyclist in your blind spot at a light"
   ],
-  // ... We will generate generic-but-unique topics for 11-50 using a pattern if not explicitly defined, 
-  // but to meet the user request, let's define categories for the remaining block to ensure uniqueness.
 };
 
-// Helper to fill the rest of the chapters with procedural but distinct topics based on theme
 const getProceduralTopics = (theme: string, chapterId: number): string[] => {
   const bases = [
     `a critical situation involving ${theme.toLowerCase()}`,
@@ -145,8 +165,6 @@ const getProceduralTopics = (theme: string, chapterId: number): string[] => {
   ];
   return bases;
 };
-
-// --- SCENARIO GENERATOR ---
 
 const generateScenario = (chapterId: number, index: number, topic: string): Scenario => {
   return {
@@ -177,8 +195,6 @@ const generateScenario = (chapterId: number, index: number, topic: string): Scen
   };
 };
 
-// --- CHAPTER GENERATION ---
-
 const CHAPTER_TITLES = [
   "Foundations of Awareness", "Pedestrian Priority", "Intersection Ethics", "Speed & Consequence", "Weather Adaptation",
   "Night Operations", "Highway Discipline", "Urban Congestion", "Rural Hazards", "Cyclist Safety",
@@ -192,7 +208,6 @@ const CHAPTER_TITLES = [
   "Headlight Courtesy", "Horn Ethics", "Music & Focus", "Digital Discipline", "Mastery of Instinct"
 ];
 
-// Expanded topics for a few more chapters to show variety
 const EXTRA_TOPICS: Record<number, string[]> = {
   11: ["an ambulance approaching from behind", "a fire truck crossing an intersection", "pulling over on a narrow road", "emergency sirens heard but not seen", "blocking a driveway during an emergency", "following an ambulance to get through traffic", "emergency vehicle stopped on shoulder", "police car with lights off", "yielding to a funeral procession", "civilian car waving a white cloth"],
   12: ["20mph zone start time", "crossing guard holding a stop sign", "school bus with flashing red lights", "parents double parking", "kids running between cars", "distracted parents driving", "ball rolling into street", "teenagers on phones crossing", "school zone ending sign", "waiting for a bus to unload"],
@@ -201,7 +216,6 @@ const EXTRA_TOPICS: Record<number, string[]> = {
   18: ["being cut off aggressively", "running late for an interview", "receiving bad news call", "crying child in back seat", "being honked at for waiting", "stuck in unmoving traffic", "tailgater flashing lights", "missing a green light", "getting lost", "spilling hot coffee"]
 };
 
-// Merge topics
 const ALL_TOPICS = { ...CHAPTER_TOPICS, ...EXTRA_TOPICS };
 
 export const CHAPTERS: Chapter[] = CHAPTER_TITLES.map((title, index) => {
