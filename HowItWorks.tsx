@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { UserPlus, PlayCircle, ClipboardCheck, MessageSquare, ShieldCheck, TrendingUp } from 'lucide-react';
+import { UserPlus, PlayCircle, Clock, CheckCircle, Unlock, TrendingUp } from 'lucide-react';
 
 const TimelineStep = ({ icon: Icon, title, desc, index }: any) => (
   <motion.div 
@@ -28,12 +28,12 @@ const TimelineStep = ({ icon: Icon, title, desc, index }: any) => (
 
 const HowItWorks: React.FC = () => {
   const steps = [
-    { icon: UserPlus, title: "Create Account", desc: "Start your journey by setting up your anonymous profile. No sensitive data needed." },
-    { icon: PlayCircle, title: "Choose Training", desc: "Select from curated scenario modules focusing on specific urban and rural challenges." },
-    { icon: ClipboardCheck, title: "Complete Sessions", desc: "Interact with 10 detailed scenarios per session, each designed to test your reflexes." },
-    { icon: MessageSquare, title: "Receive Feedback", desc: "Get immediate, professional insights into the ethical implications of your choices." },
-    { icon: ShieldCheck, title: "Build Profile", desc: "Your scores populate an ethical DNA profile across four core driving metrics." },
-    { icon: TrendingUp, title: "Track Progress", desc: "Watch your awareness level rise as you consistently make life-saving decisions." },
+    { icon: UserPlus, title: "Initialize", desc: "Enter your name to start. We create a local profile to track your journey." },
+    { icon: PlayCircle, title: "Start Chapter 1", desc: "Begin your journey with the Foundations of Awareness." },
+    { icon: Clock, title: "Make Decisions", desc: "Face 10 scenarios per chapter. You have 60 seconds for each choice." },
+    { icon: CheckCircle, title: "Review Feedback", desc: "Instantly understand the ethical weight of your decision." },
+    { icon: Unlock, title: "Unlock Progressive", desc: "Complete a chapter to automatically unlock the next one." },
+    { icon: TrendingUp, title: "Mastery", desc: "Complete all 50 chapters to achieve the highest level of awareness." },
   ];
 
   return (
@@ -42,12 +42,11 @@ const HowItWorks: React.FC = () => {
         <div className="text-center mb-24">
           <h1 className="text-5xl md:text-7xl font-bold mb-8 gradient-text">How It Works</h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            A scientific approach to behavior change, broken down into six simple steps.
+            Six simple steps to transforming your driving mindset.
           </p>
         </div>
 
         <div className="relative">
-          {/* Central Vertical Line */}
           <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 -translate-x-1/2 opacity-20"></div>
           
           <div className="relative z-10">
@@ -55,17 +54,6 @@ const HowItWorks: React.FC = () => {
               <TimelineStep key={i} {...step} index={i} />
             ))}
           </div>
-        </div>
-
-        <div className="mt-32 p-16 glass rounded-[4rem] text-center border-2 border-blue-500/10">
-          <h2 className="text-3xl md:text-5xl font-bold mb-8">Ready to evolve?</h2>
-          <p className="text-lg text-gray-400 mb-10 max-w-xl mx-auto">Join thousands of drivers committed to a safer, more ethical future on our roads.</p>
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            className="px-12 py-5 bg-white text-black font-bold rounded-full text-xl shadow-2xl"
-          >
-            Start Your First Session
-          </motion.button>
         </div>
       </div>
     </div>
