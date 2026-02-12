@@ -1,5 +1,4 @@
 
-
 export interface ScenarioOption {
   text: string;
   score: number;
@@ -25,12 +24,20 @@ export interface ChapterResult {
   completedAt: string;
 }
 
+export interface Badge {
+  id: string;
+  title: string;
+  description: string;
+  icon: string; // Lucide icon name or emoji for simplicity in this setup
+}
+
 export interface UserProfile {
   name: string;
   isLoggedIn: boolean;
   currentChapter: number;
   totalScore: number;
   chapterResults: ChapterResult[];
+  badges: string[]; // Array of Badge IDs
 }
 
 export interface ContactMessage {
