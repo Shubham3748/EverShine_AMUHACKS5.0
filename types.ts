@@ -1,47 +1,36 @@
 
-export interface UserProfile {
-  name: string;
-  email: string;
-  isLoggedIn: boolean;
-  scores: {
-    patience: number;
-    empathy: number;
-    riskAwareness: number;
-    ruleRespect: number;
-  };
-  scenariosCompleted: number;
-  decisions: DecisionHistory[];
-}
-
-export interface DecisionHistory {
-  scenarioId: number;
-  scenarioTitle: string;
-  choice: string;
-  impacts: {
-    patience: number;
-    empathy: number;
-    riskAwareness: number;
-    ruleRespect: number;
-  };
-  timestamp: string;
-}
-
-export interface Scenario {
-  id: number;
-  title: string;
-  description: string;
-  options: ScenarioOption[];
-}
 
 export interface ScenarioOption {
   text: string;
+  score: number;
   feedback: string;
-  impacts: {
-    patience: number;
-    empathy: number;
-    riskAwareness: number;
-    ruleRespect: number;
-  };
+}
+
+export interface Scenario {
+  id: string;
+  text: string;
+  options: ScenarioOption[];
+}
+
+export interface Chapter {
+  id: number;
+  title: string;
+  theme: string;
+  scenarios: Scenario[];
+}
+
+export interface ChapterResult {
+  chapterId: number;
+  score: number;
+  completedAt: string;
+}
+
+export interface UserProfile {
+  name: string;
+  isLoggedIn: boolean;
+  currentChapter: number;
+  totalScore: number;
+  chapterResults: ChapterResult[];
 }
 
 export interface ContactMessage {
